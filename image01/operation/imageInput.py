@@ -45,4 +45,43 @@ cur_img[:,:,0] = 0
 cur_img[:,:,1] = 0
 cv_show('R',cur_img)
 
-#边界填充，在卷积提取特征的时候会
+#边界填充，在卷积提取特征的时候会使用
+top_size,bottom_size,left_size,right_size = (50,50,50,50)
+replicate = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_REPLICATE)
+reflect = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size,cv2.BORDER_REFLECT)
+reflect101 = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, cv2.BORDER_REFLECT_101)
+wrap = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, cv2.BORDER_WRAP)
+constant = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size,cv2.BORDER_CONSTANT, value=0)
+plt.subplot(231), plt.imshow(img, 'gray'), plt.title('ORIGINAL')
+plt.subplot(232), plt.imshow(replicate, 'gray'), plt.title('REPLICATE')
+plt.subplot(233), plt.imshow(reflect, 'gray'), plt.title('REFLECT')
+plt.subplot(234), plt.imshow(reflect101, 'gray'), plt.title('REFLECT_101')
+plt.subplot(235), plt.imshow(wrap, 'gray'), plt.title('WRAP')
+plt.subplot(236), plt.imshow(constant, 'gray'), plt.title('CONSTANT')
+
+# plt.show() 图像的展示
+img_cat=cv2.imread('../img/cat.jpg')
+img_dog=cv2.imread('../img/dog.jpg')
+
+img_cat2 = img_cat + 10 #每个像素的值都加10
+#图像越界的话，用溢出的%256取余
+
+
+#图像融合,一定要形状相同
+img_dog = cv2.resize(img_dog,(500,414))
+
+res = cv2.addWeighted(img_cat,0.4,img_dog,0.6,0)#融合
+# cv_show('res',res)
+# plt.imshow(res)
+
+
+
+
+
+
+
+
+
+
+
+
