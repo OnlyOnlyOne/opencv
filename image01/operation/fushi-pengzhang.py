@@ -84,7 +84,7 @@ Method.cv_show('sobely', sobely)
 
 # 求和 直接算效果会不好
 sobelxy = cv2.addWeighted(sobelx, 0.5, sobely, 0.5, 0)
-Method.cv_show('sobelxy', sobelxy)
+# Method.cv_show('sobelxy', sobelxy)
 
 img = cv2.imread('../img/lena.jpg', cv2.IMREAD_GRAYSCALE)
 Method.cv_show('lena',img)
@@ -94,3 +94,4 @@ sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
 sobely = cv2.convertScaleAbs(sobely)
 sobelxy = cv2.addWeighted(sobelx, 0.5, sobely, 0.5, 0)
 Method.cv_show('sobelxy', sobelxy)
+
