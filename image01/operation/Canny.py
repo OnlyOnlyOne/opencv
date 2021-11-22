@@ -5,6 +5,8 @@ from utils.method import Method as m
 
 img = cv2.imread("../img/lena.jpg", cv2.IMREAD_GRAYSCALE)
 
+print(img)
+print(img.shape)
 # 指定maxval和minval
 v1 = cv2.Canny(img, 80, 150)
 v2 = cv2.Canny(img, 50, 100)
