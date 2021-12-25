@@ -70,6 +70,7 @@ def resize(image, width=None, height=None, inter=cv2.INTER_AREA):
 
 # 读取输入
 image = cv2.imread(args["image"])
+print(image.shape)
 #坐标也会相同变化
 ratio = image.shape[0] / 500.0
 orig = image.copy()
@@ -114,13 +115,22 @@ for c in cnts:
 
 # 展示结果
 print("STEP 2: 获取轮廓")
-cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
+cv2.drawContours(image, screenCnt, -1, (0, 255, 0), 2)
 cv2.imshow("Outline", image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
+test = screenCnt.reshape(4, 2)
+test[0] = [408,0]
+test[1] = [20,20]
+test[2] = [400,20]
+test[3] = [419,408]
+
 # 透视变换
 warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
+
+# warped = four_point_transform(orig, test * ratio)
+
 
 # 二值处理
 warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
