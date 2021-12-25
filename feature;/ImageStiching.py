@@ -1,5 +1,6 @@
 ﻿from Stitcher import Stitcher
 import cv2
+import tensorflow as tf
 
 # 读取拼接图片
 imageA = cv2.imread("img/left_01.png")

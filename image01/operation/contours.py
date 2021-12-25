@@ -11,6 +11,7 @@ gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 ret,thresh = cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
 # m.cv_show('thresh',thresh)
 
+# 要先二值化才能得到丰富的轮廓
 # contours 得到的返回值就是轮廓的信息
 binary,contours,hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
 
